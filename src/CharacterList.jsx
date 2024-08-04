@@ -9,7 +9,7 @@ export function CharacterList(props) {
 
     useEffect(() => {
         if (loading) {
-            axios.get("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<YOURPUBLICKEY>&hash=<YOURHASH>")
+            axios.get("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<6feb8dbff61a54eb4f67b903f1d2363b>&hash=<773dc610dc01e0376c59cd350b0b5b16>")
                 .then((response) => {
                     setCharacters(response.data.data.results);
                     setLoading(false);
@@ -50,5 +50,3 @@ export function CharacterList(props) {
 
 
 export default CharacterList;
-
-
