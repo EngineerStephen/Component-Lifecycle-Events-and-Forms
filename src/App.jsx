@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import CharacterList from './CharacterList'
-import CharaterDetail from './CharacterDetail'
+import CharacterDetail from './CharacterDetail'
 
 
 function App() {
@@ -9,8 +8,11 @@ function App() {
   return (
     <>
       <CharacterList/>
+      <CharacterDetail/>
     </>
   )
 }
+
+
 
 export default App
