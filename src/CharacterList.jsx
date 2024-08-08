@@ -1,7 +1,6 @@
-import React, { useEffect, useState} from "react";
+import { useEffect, useState} from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
-
-
 
 export function CharacterList(props) {
     const [characters, setCharacters] = useState([]);
@@ -9,7 +8,7 @@ export function CharacterList(props) {
 
     useEffect(() => {
         if (loading) {
-            axios.get("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<6feb8dbff61a54eb4f67b903f1d2363b>&hash=<773dc610dc01e0376c59cd350b0b5b16>")
+            axios.get("https://gateway.marvel.com/v1/public/characters?ts=1&apikey=6feb8dbff61a54eb4f67b903f1d2363b&hash=773dc610dc01e0376c59cd350b0b5b16")
                 .then((response) => {
                     setCharacters(response.data.data.results);
                     setLoading(false);
@@ -25,6 +24,9 @@ export function CharacterList(props) {
         props.onCharacterSelect(characters);
     }
 
+    const handleCharacterClick = (characterName) => {
+        alert(`You clicked on ${characterName}`);
+    }
 
     return (
         <div>
@@ -36,9 +38,8 @@ export function CharacterList(props) {
                     <button onClick={handleOrderClick}>Click Me to See Marvel Characters</button>
                     <ul>
                         {characters.map(character => (
-                            <li key={character.id} onclick={handleCharacterClick(Character.names)}>
-                                Character Name: {character.name} Description : {character.description} 
-                                
+                            <li key={character.id} onClick={() => handleCharacterClick(character.name)}>
+                                Character Name: {character.name} Description: {character.description || 'No description available'}
                             </li>
                         ))}
                     </ul>
@@ -48,5 +49,8 @@ export function CharacterList(props) {
     );
 }
 
+CharacterList.propTypes = {
+    onCharacterSelect: PropTypes.func.isRequired
+};
 
 export default CharacterList;
